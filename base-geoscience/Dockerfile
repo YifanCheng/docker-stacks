@@ -20,5 +20,8 @@ RUN mamba install --quiet --yes -c conda-forge \
     rioxarray \
     cartopy \
     holoviews \
-    geoviews && \
+    geoviews \
+    jupyter \
+    jupyterlab
+    pip && \
     mamba clean --all -f -y
