@@ -1,0 +1,20 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file base-geoscience/Dockerfile --tag base-geoscience:$(date +%s)
+    - name: Build the Docker image
+      run: docker build . --file has-tools/Dockerfile --tag has-tools:$(date +%s)
