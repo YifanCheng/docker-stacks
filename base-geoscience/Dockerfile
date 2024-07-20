@@ -7,6 +7,7 @@ LABEL maintainer="Andrew Bennett <bennett.andr@gmail.com>"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN mamba install --quiet --yes -c conda-forge \
+    python=3.10 \
     xarray \
     dask \
     netcdf4 \
@@ -22,6 +23,6 @@ RUN mamba install --quiet --yes -c conda-forge \
     holoviews \
     geoviews \
     jupyter \
-    jupyterlab
+    jupyterlab \
     pip && \
     mamba clean --all -f -y
