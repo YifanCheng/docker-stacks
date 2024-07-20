@@ -22,4 +22,4 @@ RUN git clone https://github.com/BennettHydroLab/python_for_water_weather_climat
 EXPOSE 8080
 
 # Command to run code-server
-CMD ["code-server", "--auth", "none", "--host", "0.0.0.0", "--port", "8080"]
+ENTRYPOINT ["code-server", "--auth", "none", "--host", "0.0.0.0", "--disable-telemetry", "--disable-update-check"]
