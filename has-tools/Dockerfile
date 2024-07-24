@@ -2,24 +2,29 @@ FROM arbennett/base-geoscience
 
 # Install code-server
 USER root
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Add sudo to jovyan user
+RUN apt update && \
+    apt install -y sudo && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/*
+ARG LOCAL_USER=jovyan
+ARG PRIV_CMDS='ALL'
+
+# Install vscode
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 
 # Set the working directory and user
-USER ${NB_UID}
+USER jovyan
 WORKDIR /home/jovyan
 
-# Install VS Code extensions and themes
-RUN mkdir -p ~/.local/share/code-server/extensions
-RUN code-server --install-extension ms-python.python \
-    && code-server --install-extension ms-toolsai.jupyter \
-    && code-server --install-extension charliermarsh.ruff \
-    && code-server --install-extension catppuccin.catppuccin-vsc \
-    && code-server --install-extension arcticicestudio.nord-visual-studio-code
-
-RUN git clone https://github.com/BennettHydroLab/python_for_water_weather_climate.git
+RUN mkdir -p work
+RUN mkdir -p /home/jovyan/.irods
 
 # Expose the port code-server will run on
 EXPOSE 8080
 
-# Command to run code-server
-ENTRYPOINT ["code-server", "--auth", "none", "--host", "0.0.0.0", "--disable-telemetry", "--disable-update-check"]
+COPY entry.sh /bin/entry.sh
+ENTRYPOINT ["bash", "/bin/entry.sh"]
