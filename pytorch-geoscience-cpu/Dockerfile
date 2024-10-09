@@ -1,4 +1,4 @@
-FROM jupyter/pytorch-notebook
+FROM jupyter/datascience-notebook
 
 LABEL maintainer="Andrew Bennett <bennett.andr@gmail.com>"
 
@@ -6,8 +6,8 @@ LABEL maintainer="Andrew Bennett <bennett.andr@gmail.com>"
 # Fix: https://github.com/koalaman/shellcheck/wiki/SC3014
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+RUN mamba install pytorch torchvision torchaudio cpuonly -c pytorch
 RUN mamba install --quiet --yes -c conda-forge \
-    python=3.10 \
     xarray \
     dask \
     netcdf4 \
@@ -25,4 +25,4 @@ RUN mamba install --quiet --yes -c conda-forge \
     jupyter \
     jupyterlab \
     pip && \
-    mamba clean --all -f -y
+    conda clean --all -f -y
