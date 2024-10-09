@@ -17,6 +17,7 @@ RUN mamba install --quiet --yes -c conda-forge \
     pooch \
     fiona \
     pyogrio \
+    sqlite \
     geopandas \
     rioxarray \
     cartopy \
