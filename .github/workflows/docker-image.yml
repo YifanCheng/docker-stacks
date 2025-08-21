@@ -17,4 +17,4 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file base-geoscience/Dockerfile --tag base-geoscience:$(date +%s)
     - name: Build the Docker image
-      run: docker build . --file has-tools/Dockerfile --tag has-tools:$(date +%s)
+      run: docker build . --file os-hydro/Dockerfile --tag os-hydro:$(date +%s)

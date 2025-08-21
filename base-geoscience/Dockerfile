@@ -1,6 +1,7 @@
 FROM jupyter/datascience-notebook
 
-LABEL maintainer="Andrew Bennett <bennett.andr@gmail.com>"
+#LABEL maintainer="Andrew Bennett <bennett.andr@gmail.com>"
+LABEL maintainer="Yifan Cheng <yifanc93@gmail.com>"
 
 # Fix: https://github.com/hadolint/hadolint/wiki/DL4006
 # Fix: https://github.com/koalaman/shellcheck/wiki/SC3014
